@@ -18,8 +18,8 @@ spring:
     init:
       mode: always # 对于非嵌入式的数据库，我们总是需要加载data.sql或者schema.sql的内容
       data-locations: classpath*:sql/data.sql
+# 没有看到导入日志
 logging:
   level:
     org.hibernate.sql: debug
     org.hibernate.type: trace
-debug: true
