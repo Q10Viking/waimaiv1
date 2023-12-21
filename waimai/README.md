@@ -32,6 +32,6 @@ swagger3
 
 ## 项目搭建
 
-1. web,jpa存储,父子项目，springboot,文档，mysql
-2. 加载数据
+1. springboot搭建父子项目,web,jpa存储,文档,mysql,验证
+2. 加载数据,使用jpa的hibernate先创建schema，然后再导入数据。
 
