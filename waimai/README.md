@@ -29,3 +29,9 @@ gitignore文件
 
 swagger3
 
+
+## 项目搭建
+
+1. web,jpa存储,父子项目，springboot,文档，mysql
+2. 加载数据
+

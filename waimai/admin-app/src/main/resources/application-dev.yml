@@ -7,4 +7,18 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
-    show-sql: true
+    show-sql: true  # 会展示hibernate创建schema
+    hibernate:
+      ddl-auto: create
+    defer-datasource-initialization: true  # 在hibernate创建schema之后在执行data.sql
+    properties:
+      hibernate:
+        format_sql: true
+  sql:
+    init:
+      mode: always # 对于非嵌入式的数据库，我们总是需要加载data.sql或者schema.sql的内容
+      data-locations: classpath*:sql/data.sql
+logging:
+  level:
+    org.hibernate.sql: debug
+    org.hibernate.type: trace
