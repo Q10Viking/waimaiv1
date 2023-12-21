@@ -22,6 +22,10 @@
         <lombok.version>1.18.18</lombok.version>
         <springdoc.version>1.7.0</springdoc.version>
         <mysql.connector.java.version>8.0.11</mysql.connector.java.version>
+        <ehcache.core.version>2.6.11</ehcache.core.version>
+        <!--util libs-->
+        <guava.version>20.0</guava.version>
+        <commons-lang3.version>3.6</commons-lang3.version>
     </properties>
 
     <dependencyManagement>
@@ -56,6 +60,24 @@
                 <artifactId>lombok</artifactId>
                 <scope>provided</scope>
                 <version>${lombok.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>net.sf.ehcache</groupId>
+                <artifactId>ehcache-core</artifactId>
+                <version>${ehcache.core.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

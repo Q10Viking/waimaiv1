@@ -35,3 +35,20 @@ swagger3
 1. springboot搭建父子项目,web,jpa存储,文档,mysql,验证
 2. 加载数据,使用jpa的hibernate先创建schema，然后再导入数据。
 
+// 缓存
+https://juejin.cn/post/6844903863821025293
+
+https://www.baeldung.com/spring-boot-evict-cache
+
+```
+@Autowired
+CacheManager cacheManager;
+
+public void evictSingleCacheValue(String cacheName, String cacheKey) {
+    cacheManager.getCache(cacheName).evict(cacheKey);
+}
+
+public void evictAllCacheValues(String cacheName) {
+    cacheManager.getCache(cacheName).clear();
+}
+```
