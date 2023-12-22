@@ -25,7 +25,7 @@ import java.util.HashMap;
 @Tag(name = "管理界面用户管理",description = "用户管理登录等等")
 @Slf4j
 public class AccountController extends BaseController{
-    
+
     @Autowired
     private UserService userService;
 
