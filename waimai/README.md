@@ -34,6 +34,8 @@ swagger3
 
 1. springboot搭建父子项目,web,jpa存储,文档,mysql,验证
 2. 加载数据,使用jpa的hibernate先创建schema，然后再导入数据。
+3. 服务层通用增删改查使用模板的方法抽象出来了。
+4. 接触了本地缓存
 
 // 缓存
 https://juejin.cn/post/6844903863821025293
