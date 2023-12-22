@@ -1,6 +1,7 @@
 package org.hzz.controller;
 
 
+import com.google.common.collect.Maps;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -10,20 +11,21 @@ import org.hzz.bean.vo.front.Ret;
 import org.hzz.bean.vo.front.Rets;
 import org.hzz.service.system.UserService;
 import org.hzz.utils.Constants;
+import org.hzz.utils.MD5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 
 @RestController
 @RequestMapping("/account")
 @Tag(name = "管理界面用户管理",description = "用户管理登录等等")
 @Slf4j
 public class AccountController extends BaseController{
-
-
+    
     @Autowired
     private UserService userService;
 
@@ -56,13 +58,19 @@ public class AccountController extends BaseController{
             if(user == null){
                 return Rets.failure("该用户不存在");
             }
-
+            String passwdMd5 = MD5.md5(password, user.getSalt());
+            if(!user.getPassword().equals(passwdMd5)){
+                return Rets.failure("密码输入错误");
+            }
 
         }else if (Constants.USER_TYPE_SHOP.equals(userType)){
             // 商户
         }else{
 
         }
-        return null;
+        HashMap<String, String> map = Maps.<String, String>newHashMap();
+        log.info("token:{}", token);
+        map.put("token",token);
+        return Rets.success(map);
     }
 }
