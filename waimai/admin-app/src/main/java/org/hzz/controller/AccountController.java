@@ -5,8 +5,12 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.NotImplementedException;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.hzz.bean.entity.system.User;
+import org.hzz.bean.vo.front.Ret;
+import org.hzz.bean.vo.front.Rets;
+import org.hzz.service.system.UserService;
+import org.hzz.utils.Constants;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +23,10 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 public class AccountController extends BaseController{
 
+
+    @Autowired
+    private UserService userService;
+
     /**
      * 用户登录<br>
      * 1，验证没有注册<br>
@@ -30,7 +38,7 @@ public class AccountController extends BaseController{
      * @return
      */
     @Operation(summary = "用户登录", description = "用户登录")
-    public Object login(
+    public Ret login(
             @Parameter(description = "用户登录类型",required = true,example = "1或者2")
             @RequestParam("userType") String userType,
             @Parameter(description = "用户名",required = true,example = "admin")
@@ -40,7 +48,21 @@ public class AccountController extends BaseController{
                         HttpServletRequest request){
 
         log.info("用户登录:" + userName + ",密码:" + password);
+        String token = null;
 
+        if(Constants.USER_TYPE_MGR.equals(userType)){
+            // 管理员
+            User user = userService.findByAccount(userName);
+            if(user == null){
+                return Rets.failure("该用户不存在");
+            }
+
+
+        }else if (Constants.USER_TYPE_SHOP.equals(userType)){
+            // 商户
+        }else{
+
+        }
         return null;
     }
 }

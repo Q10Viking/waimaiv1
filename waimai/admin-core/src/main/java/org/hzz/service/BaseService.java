@@ -25,7 +25,7 @@ public abstract class BaseService<T,ID extends Serializable,R extends BaseReposi
         implements CrudService<T,ID>{
 
     @Autowired
-    private R dao;
+    protected R dao;
 
     @Override
     @CacheEvict(value = Cache.APPLICATION,key = "#root.targetClass.simpleName+':'+#id")
